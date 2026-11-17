@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Learning Modules | Internlytic Cyber Portal</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <nav>
+    <div class="nav-container">
+      <a href="index.html" class="brand">Internlytic Cyber Portal</a>
+      <div class="nav-links">
+        <a href="index.html" class="active">1. Learning Modules</a>
+        <a href="quiz.html">2. Threat Quiz</a>
+        <a href="link-inspector.html">3. Link Inspector</a>
+        <a href="password-meter.html">4. Password Meter</a>
+        <a href="secure-coding.html">5. Secure Coding</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="progress-banner">
+    <div class="progress-inner">
+      <strong style="font-size:0.9rem;">Overall Progress:</strong>
+      <div class="progress-track"><div class="progress-fill" id="globalBar"></div></div>
+      <span id="globalText" style="font-size:0.85rem; color:var(--text-muted);">0% Completed</span>
+    </div>
+  </div>
+
+  <main>
+    <div class="page-header">
+      <h1>Core Cyber Awareness Modules</h1>
+      <p>Study each security topic with real-world attack examples and mark modules completed to track your progress.</p>
+    </div>
+
+    <!-- Module 1: Phishing -->
+    <div class="card-box" id="mod-card-0">
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+        <h2>Module 1: Phishing & Social Engineering</h2>
+        <button class="btn btn-primary" id="btn-mod-0" onclick="toggleModule(0)">Mark Module Completed</button>
+      </div>
+      <p style="color:var(--text-muted); margin-top:8px;">Phishing attacks manipulate human emotions—such as fear, urgency, or curiosity—to trick victims into revealing passwords, OTPs, or financial information.</p>
+
+      <div class="grid-2" style="margin-top:16px;">
+        <div class="example-box example-bad">
+          <span class="badge badge-danger">Phishing Red Flags Example</span>
+          <p style="margin-top:8px; font-family:monospace;">
+            <strong>From:</strong> alerts@bank-security-update99.com<br>
+            <strong>Subject:</strong> FINAL WARNING: Account Suspended!<br>
+            "Dear Customer, unusual login detected. Verify your ATM PIN and password within 1 hour or lose access permanently."
+          </p>
+          <p style="margin-top:8px; color:var(--text-muted); font-size:0.85rem;"><strong>Why it's fake:</strong> Generic greeting ("Dear Customer"), fake domain, extreme urgency, and asking for PIN/password.</p>
+        </div>
+
+        <div class="example-box example-good">
+          <span class="badge badge-success">Safe Security Habit</span>
+          <ul style="padding-left:18px; margin-top:8px; color:var(--text-muted);">
+            <li>Never click login links inside urgent emails or SMS messages.</li>
+            <li>Open a new browser tab and type the official website address yourself.</li>
+            <li>Verify sender email headers carefully (look past the display name).</li>
+            <li>Report suspicious emails to your organization's IT/SOC team immediately.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Module 2: Password Safety -->
+    <div class="card-box" id="mod-card-1">
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+        <h2>Module 2: Password Safety & Multi-Factor Authentication</h2>
+        <button class="btn btn-primary" id="btn-mod-1" onclick="toggleModule(1)">Mark Module Completed</button>
+      </div>
+      <p style="color:var(--text-muted); margin-top:8px;">Weak or reused passwords are the #1 cause of account takeovers via credential stuffing and brute-force attacks.</p>
+
+      <div class="grid-2" style="margin-top:16px;">
+        <div class="example-box example-bad">
+          <span class="badge badge-danger">Weak Password Patterns</span>
+          <ul style="padding-left:18px; margin-top:8px; color:var(--text-muted);">
+            <li><code>Umar1234</code> — Predictable name + sequential numbers (cracked in milliseconds).</li>
+            <li><code>P@ssw0rd2026</code> — Common dictionary substitutions are guessed instantly by automated tools.</li>
+            <li>Using the exact same password for Gmail, Banking, and shopping sites.</li>
+          </ul>
+        </div>
+
+        <div class="example-box example-good">
+          <span class="badge badge-success">Strong Passphrase Strategy</span>
+          <ul style="padding-left:18px; margin-top:8px; color:var(--text-muted);">
+            <li><strong>Use Passphrases (14+ chars):</strong> e.g., <code>Blue-Mango#Rocket92!Sky</code></li>
+            <li><strong>Enable MFA:</strong> Even if a password leaks, Authenticator App (TOTP) or FIDO2 keys block attackers.</li>
+            <li><strong>Use a Password Manager:</strong> Generate unique random passwords for every account.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Module 3: Suspicious Links -->
+    <div class="card-box" id="mod-card-2">
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+        <h2>Module 3: Anatomy of Suspicious Links</h2>
+        <button class="btn btn-primary" id="btn-mod-2" onclick="toggleModule(2)">Mark Module Completed</button>
+      </div>
+      <p style="color:var(--text-muted); margin-top:8px;">Attackers disguise malicious URLs using look-alike characters (typosquatting) and deceptive subdomains.</p>
+
+      <div class="grid-2" style="margin-top:16px;">
+        <div class="example-box example-bad">
+          <span class="badge badge-danger">Deceptive URL Tricks</span>
+          <ul style="padding-left:18px; margin-top:8px; color:var(--text-muted);">
+            <li><strong>Typosquatting:</strong> <code>www.micros0ft-login.com</code> (zero instead of 'o').</li>
+            <li><strong>Subdomain Deception:</strong> <code>https://accounts.google.com.verify-user.xyz</code> — The actual owner is <code>verify-user.xyz</code>!</li>
+            <li><strong>URL Shorteners:</strong> Blindly clicking <code>bit.ly</code> links in unsolicited DMs.</li>
+          </ul>
+        </div>
+
+        <div class="example-box example-good">
+          <span class="badge badge-success">How to Inspect Before Clicking</span>
+          <ul style="padding-left:18px; margin-top:8px; color:var(--text-muted);">
+            <li>Hover your mouse over any link to preview the true destination URL in the bottom corner.</li>
+            <li>Read the domain right before the first single forward slash (<code>/</code>).</li>
+            <li>Test suspicious links safely in our <a href="link-inspector.html" style="color:var(--primary);">Link Inspector Tool &rarr;</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align:right;">
+      <a href="quiz.html" class="btn btn-primary">Proceed to Threat Quiz &rarr;</a>
+    </div>
+  </main>
+
+  <footer>Internlytic Technologies Phase 3 Cyber Security & Secure Coding Internship | Educational Use Only</footer>
+  <script src="app.js"></script>
+</body>
+</html>

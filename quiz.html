@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Threat Quiz | Internlytic Cyber Portal</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <nav>
+    <div class="nav-container">
+      <a href="index.html" class="brand">Internlytic Cyber Portal</a>
+      <div class="nav-links">
+        <a href="index.html">1. Learning Modules</a>
+        <a href="quiz.html" class="active">2. Threat Quiz</a>
+        <a href="link-inspector.html">3. Link Inspector</a>
+        <a href="password-meter.html">4. Password Meter</a>
+        <a href="secure-coding.html">5. Secure Coding</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="progress-banner">
+    <div class="progress-inner">
+      <strong style="font-size:0.9rem;">Overall Progress:</strong>
+      <div class="progress-track"><div class="progress-fill" id="globalBar"></div></div>
+      <span id="globalText" style="font-size:0.85rem; color:var(--text-muted);">0% Completed</span>
+    </div>
+  </div>
+
+  <main>
+    <div class="page-header">
+      <h1>Interactive Threat Identification Quiz</h1>
+      <p>Evaluate 10 realistic fictional messages (Emails, SMS, Slack DMs, and Browser Alerts) to test your cyber defense instincts.</p>
+    </div>
+
+    <!-- Scoreboard Summary -->
+    <div class="card-box" style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:16px; align-items:center;">
+      <div>
+        <span style="color:var(--text-muted); font-size:0.85rem;">CURRENT SCENARIO</span>
+        <h3 id="qProgress" style="color:var(--primary);">Question 1 of 10</h3>
+      </div>
+      <div>
+        <span style="color:var(--text-muted); font-size:0.85rem;">LIVE SCORE</span>
+        <h3 id="qScore" style="color:var(--success);">0 Points</h3>
+      </div>
+      <div>
+        <span style="color:var(--text-muted); font-size:0.85rem;">BEST RECORDED SCORE</span>
+        <h3 id="bestScoreDisplay" style="color:var(--warning);">Not Attempted</h3>
+      </div>
+    </div>
+
+    <!-- Active Quiz Card -->
+    <div class="card-box" id="quizArea">
+      <span class="badge" id="qCategory" style="background:rgba(56,189,248,0.2); color:var(--primary);">Email Scenario</span>
+      <pre id="qText" style="font-size:0.98rem; margin:16px 0; white-space:pre-wrap;"></pre>
+
+      <div id="qButtons" style="display:flex; gap:12px; flex-wrap:wrap;">
+        <button class="btn btn-success" onclick="answerQuiz(true)">✓ Safe / Legitimate</button>
+        <button class="btn btn-danger" onclick="answerQuiz(false)">⚠ Unsafe / Phishing</button>
+      </div>
+
+      <div id="qFeedback" class="alert" style="display:none;"></div>
+      <button id="qNextBtn" class="btn btn-primary" style="margin-top:16px; display:none;" onclick="nextQuizQuestion()">Next Scenario &rarr;</button>
+    </div>
+  </main>
+
+  <footer>Internlytic Technologies Phase 3 Cyber Security & Secure Coding Internship | Educational Use Only</footer>
+  <script src="app.js"></script>
+</body>
+</html>

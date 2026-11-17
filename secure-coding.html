@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Secure Coding Checklist | Internlytic Cyber Portal</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <nav>
+    <div class="nav-container">
+      <a href="index.html" class="brand">Internlytic Cyber Portal</a>
+      <div class="nav-links">
+        <a href="index.html">1. Learning Modules</a>
+        <a href="quiz.html">2. Threat Quiz</a>
+        <a href="link-inspector.html">3. Link Inspector</a>
+        <a href="password-meter.html">4. Password Meter</a>
+        <a href="secure-coding.html" class="active">5. Secure Coding</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="progress-banner">
+    <div class="progress-inner">
+      <strong style="font-size:0.9rem;">Overall Progress:</strong>
+      <div class="progress-track"><div class="progress-fill" id="globalBar"></div></div>
+      <span id="globalText" style="font-size:0.85rem; color:var(--text-muted);">0% Completed</span>
+    </div>
+  </div>
+
+  <main>
+    <div class="page-header">
+      <h1>Developer Secure-Coding Checklist & Code Comparison</h1>
+      <p>Review essential defensive programming standards covering Input Validation, Password Hashing, and Safe Error Handling.</p>
+    </div>
+
+    <!-- Interactive Checklist -->
+    <div class="card-box">
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:16px;">
+        <h2>Interactive Security Audit Checklist</h2>
+        <span id="checkCounter" class="badge badge-success">0 / 9 Completed</span>
+      </div>
+
+      <div class="grid-3">
+        <div class="example-box">
+          <h3 style="color:var(--primary); margin-bottom:10px;">1. Input Validation</h3>
+          <label style="display:block; margin-bottom:10px; cursor:pointer;"><input type="checkbox" class="dev-chk" data-id="0" onchange="saveChecklist()"> Enforce strict server-side allow-list validation on all form fields.</label>
+          <label style="display:block; margin-bottom:10px; cursor:pointer;"><input type="checkbox" class="dev-chk" data-id="1" onchange="saveChecklist()"> Use parameterized SQL queries to eliminate SQL Injection.</label>
+          <label style="display:block; cursor:pointer;"><input type="checkbox" class="dev-chk" data-id="2" onchange="saveChecklist()"> Escape/encode untrusted user data before rendering in HTML (XSS defense).</label>
+        </div>
+
+        <div class="example-box">
+          <h3 style="color:var(--primary); margin-bottom:10px;">2. Password Hashing</h3>
+          <label style="display:block; margin-bottom:10px; cursor:pointer;"><input type="checkbox" class="dev-chk" data-id="3" onchange="saveChecklist()"> Never store plain-text or reversible encrypted passwords.</label>
+          <label style="display:block; margin-bottom:10px; cursor:pointer;"><input type="checkbox" class="dev-chk" data-id="4" onchange="saveChecklist()"> Hash passwords with Argon2id or bcrypt using unique per-user salts.</label>
+          <label style="display:block; cursor:pointer;"><input type="checkbox" class="dev-chk" data-id="5" onchange="saveChecklist()"> Deprecate weak/fast hashes (MD5, SHA-1, unsalted SHA-256).</label>
+        </div>
+
+        <div class="example-box">
+          <h3 style="color:var(--primary); margin-bottom:10px;">3. Safe Error Handling</h3>
+          <label style="display:block; margin-bottom:10px; cursor:pointer;"><input type="checkbox" class="dev-chk" data-id="6" onchange="saveChecklist()"> Display generic user-facing errors ("Invalid email or password").</label>
+          <label style="display:block; margin-bottom:10px; cursor:pointer;"><input type="checkbox" class="dev-chk" data-id="7" onchange="saveChecklist()"> Turn off stack traces and debug flags in production builds.</label>
+          <label style="display:block; cursor:pointer;"><input type="checkbox" class="dev-chk" data-id="8" onchange="saveChecklist()"> Scrub sensitive tokens, API keys, and passwords from server logs.</label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Vulnerable vs Secure Code Examples -->
+    <div class="card-box">
+      <h2>Vulnerable vs. Secure Code Examples</h2>
+      <div class="grid-2" style="margin-top:14px;">
+        <div>
+          <span class="badge badge-danger">Vulnerable (SQL Injection Risk)</span>
+          <pre>// BAD: Direct string concatenation
+const query = "SELECT * FROM users WHERE email = '" + userInput + "'";
+db.execute(query);</pre>
+        </div>
+        <div>
+          <span class="badge badge-success">Secure (Parameterized Query)</span>
+          <pre>// GOOD: Prepared statement separates code from data
+const query = "SELECT * FROM users WHERE email = ?";
+db.execute(query, [userInput]);</pre>
+        </div>
+      </div>
+
+      <div class="grid-2" style="margin-top:18px;">
+        <div>
+          <span class="badge badge-danger">Vulnerable (Leaking Stack Traces)</span>
+          <pre>// BAD: Exposing database internals to client
+catch (err) {
+  res.status(500).send("DB Error: " + err.stack);
+}</pre>
+        </div>
+        <div>
+          <span class="badge badge-success">Secure (Generic Message + Internal Log)</span>
+          <pre>// GOOD: Log internally, show safe generic message
+catch (err) {
+  logger.error("Auth failure", { code: err.code });
+  res.status(500).json({ error: "Something went wrong." });
+}</pre>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>Internlytic Technologies Phase 3 Cyber Security & Secure Coding Internship | Educational Use Only</footer>
+  <script src="app.js"></script>
+</body>
+</html>

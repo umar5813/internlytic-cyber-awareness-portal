@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Link Inspector | Internlytic Cyber Portal</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <nav>
+    <div class="nav-container">
+      <a href="index.html" class="brand">Internlytic Cyber Portal</a>
+      <div class="nav-links">
+        <a href="index.html">1. Learning Modules</a>
+        <a href="quiz.html">2. Threat Quiz</a>
+        <a href="link-inspector.html" class="active">3. Link Inspector</a>
+        <a href="password-meter.html">4. Password Meter</a>
+        <a href="secure-coding.html">5. Secure Coding</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="progress-banner">
+    <div class="progress-inner">
+      <strong style="font-size:0.9rem;">Overall Progress:</strong>
+      <div class="progress-track"><div class="progress-fill" id="globalBar"></div></div>
+      <span id="globalText" style="font-size:0.85rem; color:var(--text-muted);">0% Completed</span>
+    </div>
+  </div>
+
+  <main>
+    <div class="page-header">
+      <h1>Suspicious Link Inspector</h1>
+      <p>Analyze fictional URLs locally in your browser to uncover hidden phishing techniques without visiting dangerous websites.</p>
+    </div>
+
+    <div class="card-box">
+      <h2>URL Structure & Red-Flag Analyzer</h2>
+      <p style="color:var(--text-muted); font-size:0.9rem;">Click a preset fictional example or paste your own test URL below:</p>
+
+      <div style="display:flex; gap:8px; flex-wrap:wrap; margin:14px 0;">
+        <button class="btn btn-outline" onclick="fillUrl('http://paypa1-security-login.com/verify')">Typosquatting Example</button>
+        <button class="btn btn-outline" onclick="fillUrl('https://portal.bank.com@attacker-site.tk/auth')">@ Symbol Redirect</button>
+        <button class="btn btn-outline" onclick="fillUrl('http://185.220.101.4/update-kyc')">Raw IP Address Link</button>
+        <button class="btn btn-outline" onclick="fillUrl('https://login.microsoft.com.session-reset.xyz')">Subdomain Spoofing</button>
+        <button class="btn btn-outline" onclick="fillUrl('https://developer.mozilla.org/en-US/docs/Web/Security')">Legitimate HTTPS URL</button>
+      </div>
+
+      <div class="input-row">
+        <input type="text" id="urlField" placeholder="Enter fictional URL (e.g., http://amaz0n-gift-claim.xyz)" />
+        <button class="btn btn-primary" onclick="runUrlInspection()">Analyze URL</button>
+      </div>
+
+      <div id="urlOutput" style="display:none;"></div>
+    </div>
+
+    <div class="card-box">
+      <h2>How to Read a URL Like a Security Analyst</h2>
+      <pre>https://  accounts.google.com  .security-check.xyz  /login?id=123
+  │              │                      │                │
+Protocol     Subdomain           TRUE ROOT DOMAIN       Path</pre>
+      <p style="color:var(--text-muted); font-size:0.9rem; margin-top:12px;">
+        In the example above, <strong>security-check.xyz</strong> is the actual registered domain—NOT Google. Attackers place trusted brand names as subdomains to fool users on mobile screens.
+      </p>
+    </div>
+  </main>
+
+  <footer>Internlytic Technologies Phase 3 Cyber Security & Secure Coding Internship | Educational Use Only</footer>
+  <script src="app.js"></script>
+</body>
+</html>
